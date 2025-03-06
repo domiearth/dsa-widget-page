@@ -1,37 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import MyButton from './components/MyButton'
-
+import {  Container, Form, Row } from "react-bootstrap";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [markdownText, setMarkdownText] = useState("");
+  console.log("API URL:", import.meta.env.VITE_API_URL);
+  console.log("App Name:", import.meta.env.VITE_APP_NAME);
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <MyButton label="Click Me" variant="success" onClick={() => alert("Button Clicked!")} />
-    </>
-  )
+    <Container fluid className="vh-100 vw-100 d-flex flex-column w-100">
+      <Row className="flex-grow-1 bg-light border-bottom p-3 w-100 m-0">
+        <h5>HTML Viewer</h5>
+        <p>Rendered HTML content...</p>
+      </Row>
+      <Row className="flex-grow-1 bg-white border-bottom p-3">
+        <h5>Markdown Viewer</h5>
+        <p>{markdownText}</p>
+      </Row>
+      <Row className="p-3">
+        <Form.Control
+          type="text"
+          placeholder="Enter markdown text..."
+          value={markdownText}
+          onChange={(e) => setMarkdownText(e.target.value)}
+        />
+      </Row>
+    </Container>
+  );
 }
 
-export default App
+export default App;
