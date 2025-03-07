@@ -4,7 +4,8 @@ import HtmlViewer from "./components/HtmlViewer";
 import MarkdownViewer from "./components/MarkdownViewer";
 import { HttpClient } from "./utils/http_client_utils";
 import { VarUtils } from "./utils/var_utils";
-import { URLBuilder } from "./obj/URLBuilder";
+import { URLBuilder } from "./helpers/URLBuilder";
+import { Base64Utils } from "./utils/base64_utils";
 
 interface ApiResponse {
   view: string;
@@ -12,8 +13,8 @@ interface ApiResponse {
 }
 
 function genUrl(): string {
-  const host = VarUtils.getVar('HOST');
-  const query = VarUtils.getVar('QUERY');
+  const host = Base64Utils.decode( VarUtils.getVar('host')!) ;
+  const query = Base64Utils.decode(VarUtils.getVar('query')!);
   const _url = new URLBuilder(host!)
     .addParameter("query", query!)
     .build();
