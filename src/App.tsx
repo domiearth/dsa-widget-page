@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Form, Row, Spinner, Modal } from "react-bootstrap";
+import { Container, Form, Row, Col, Spinner, Modal } from "react-bootstrap";
 import HtmlViewer from "./components/HtmlViewer";
 import MarkdownViewer from "./components/MarkdownViewer";
 import { HttpClient } from "./utils/http_client_utils";
@@ -12,12 +12,12 @@ interface ApiResponse {
 }
 
 function genUrl(): string {
-  const host = ( VarUtils.getVar('host')!) ;
-  const query =(VarUtils.getVar('query')!);
-  const _url = new URLBuilder(host!)
-    .addParameter("query", query!)
+  const host = VarUtils.getVar('host')!;
+  const query = VarUtils.getVar('query')!;
+  const _url = new URLBuilder(host)
+    .addParameter("query", query)
     .build();
-  return _url!;
+  return _url;
 }
 
 function App() {
@@ -59,14 +59,14 @@ function App() {
         </Modal>
       )}
 
-      {/* HTML Viewer (50% Height) */}
-      <Row className="h-50 bg-light border-bottom p-3 w-100 m-0 overflow-hidden">
-        <HtmlViewer htmlContent={htmlContent} />
-      </Row>
-
-      {/* Markdown Viewer (50% Height with Scroll) */}
-      <Row className="h-50 bg-white border-bottom p-3 w-100 m-0 overflow-auto">
-        <MarkdownViewer markdownText={markdownText} />
+      {/* Responsive Grid */}
+      <Row className="flex-grow-1 d-flex w-100 m-0">
+        <Col xs={12} md={6} className="bg-light border-end p-3 overflow-hidden">
+          <HtmlViewer htmlContent={htmlContent} />
+        </Col>
+        <Col xs={12} md={6} className="bg-white p-3 overflow-auto">
+          <MarkdownViewer markdownText={markdownText} />
+        </Col>
       </Row>
 
       {/* Markdown Input */}
