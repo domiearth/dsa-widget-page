@@ -14,8 +14,10 @@ interface ApiResponse {
 function genUrl(): string {
   const host = VarUtils.getVar('host')!;
   const query = VarUtils.getVar('query')!;
+  const sheetId = VarUtils.getVar('sheetid')!;
   const _url = new URLBuilder(host)
     .addParameter("query", query)
+    .addParameter("sheetId", sheetId)
     .build();
   return _url;
 }
