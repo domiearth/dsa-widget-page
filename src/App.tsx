@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Container, Form, Row, Col, Spinner, Modal } from "react-bootstrap";
+import { useState, useEffect, useCallback } from "react";
+import { Container, Form, Row, Col, Spinner, Modal, InputGroup, Button } from "react-bootstrap";
 import HtmlViewer from "./components/HtmlViewer";
 import MarkdownViewer from "./components/MarkdownViewer";
 import { HttpClient } from "./utils/http_client_utils";
@@ -11,45 +11,45 @@ interface ApiResponse {
   content: string;
 }
 
-function genUrl(): string {
-  const host = VarUtils.getVar('host')!;
-  const query = VarUtils.getVar('query')!;
-  const sheetId = VarUtils.getVar('sheetid')!;
-  const _url = new URLBuilder(host)
-    .addParameter("query", query)
-    .addParameter("sheetId", sheetId)
-    .build();
-  return _url;
-}
-
 function App() {
+  const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
+  const [query, setQuery] = useState(inputQuery); // Holds the query for fetching
   const [markdownText, setMarkdownText] = useState("");
   const [htmlContent, setHtmlContent] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchData = useCallback(async () => {
+    if (!query) return;
+
+    setIsLoading(true);
+    try {
+      const host = VarUtils.getVar("host");
+      if (!host) {
+        console.error("Host variable is missing");
+        return;
+      }
+
+      const _url = new URLBuilder(host).addParameter("query", query).build();
+      console.log(`Fetching from URL: ${_url}`);
+
+      const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
+      console.log("API Response:", response);
+
+      setHtmlContent(response.view);
+      setMarkdownText(response.content);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [query]);
 
   useEffect(() => {
-    const fetchHtml = async () => {
-      try {
-        setIsLoading(true);
-        const _url = genUrl();
-        if (_url) {
-          console.log(_url);
-          const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
-          console.log(JSON.stringify(response));
-          setHtmlContent(response.view);
-          setMarkdownText(response.content);
-        }
-      } catch (error) {
-        console.error("Error fetching HTML:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchHtml();
-  }, []);
+    fetchData();
+  }, [fetchData, query]); // Only fetch when `query` changes (not `inputQuery`)
 
   return (
-    <Container fluid className="vh-100 vw-100 d-flex flex-column w-100">
+    <Container fluid className="vh-100 vw-100 d-flex flex-column">
       {isLoading && (
         <Modal show={true} centered backdrop="static">
           <Modal.Body className="text-center">
@@ -61,7 +61,7 @@ function App() {
         </Modal>
       )}
 
-      {/* Responsive Grid */}
+      {/* Content Display */}
       <Row className="flex-grow-1 d-flex w-100 m-0">
         <Col xs={12} md={6} className="bg-light border-end p-3 overflow-hidden">
           <HtmlViewer htmlContent={htmlContent} />
@@ -71,13 +71,22 @@ function App() {
         </Col>
       </Row>
 
-      {/* Markdown Input */}
+      {/* Input Field & Fetch Button */}
       <Row className="p-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter markdown text..."
-          onChange={(e) => console.log(e.target.value)}
-        />
+        <InputGroup className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Enter query"
+            value={inputQuery}
+            onChange={(e) => setInputQuery(e.target.value)} // Updates input state, but does not fetch
+          />
+          <Button
+            variant="outline-secondary"
+            onClick={() => setQuery(inputQuery)} // Sets `query`, which triggers the fetch
+          >
+            Fetch
+          </Button>
+        </InputGroup>
       </Row>
     </Container>
   );
