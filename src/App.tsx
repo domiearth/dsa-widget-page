@@ -13,26 +13,29 @@ interface ApiResponse {
 
 function App() {
   const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
-  const [query, setQuery] = useState(inputQuery); // Holds the query for fetching
+  const [query, setQuery] = useState(inputQuery);
   const [markdownText, setMarkdownText] = useState("");
   const [htmlContent, setHtmlContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
     if (!query) return;
-
     setIsLoading(true);
+
     try {
       const host = VarUtils.getVar("host");
-      const sheetId = VarUtils.getVar('sheetid')!;
+      const sheetId = VarUtils.getVar("sheetid")!;
       if (!host) {
         console.error("Host variable is missing");
         return;
       }
 
-      const _url = new URLBuilder(host).addParameter("query", query).addParameter("sheetId", sheetId).build();
-      console.log(`Fetching from URL: ${_url}`);
+      const _url = new URLBuilder(host)
+        .addParameter("query", query)
+        .addParameter("sheetId", sheetId)
+        .build();
 
+      console.log(`Fetching from URL: ${_url}`);
       const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
       console.log("API Response:", response);
 
@@ -47,10 +50,19 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData, query]); // Only fetch when `query` changes (not `inputQuery`)
+  }, [fetchData, query]);
 
   return (
-    <Container fluid className="vh-100 vw-100 d-flex flex-column">
+    <div className="app-root">
+      {/* Hero Section */}
+      <section className="hero-section">
+        <h1 className="brand-title">Carbon Compass App</h1>
+        <p className="brand-subtitle">
+        domiearth service assistant widget 
+        </p>
+      </section>
+
+      {/* Loading Overlay */}
       {isLoading && (
         <Modal show={true} centered backdrop="static">
           <Modal.Body className="text-center">
@@ -62,34 +74,32 @@ function App() {
         </Modal>
       )}
 
-      {/* Content Display */}
-      <Row className="flex-grow-1 d-flex w-100 m-0">
-        <Col xs={12} md={6} className="bg-light border-end p-3 overflow-hidden">
-          <HtmlViewer htmlContent={htmlContent} />
-        </Col>
-        <Col xs={12} md={6} className="bg-white p-3 overflow-auto">
-          <MarkdownViewer markdownText={markdownText} />
-        </Col>
-      </Row>
+      {/* Main Content */}
+      <Container fluid className="section-wrapper">
+        <Row className="content-row">
+          <Col xs={12} md={6} className="viewer-col">
+            <HtmlViewer htmlContent={htmlContent} />
+          </Col>
+          <Col xs={12} md={6} className="viewer-col">
+            <MarkdownViewer markdownText={markdownText} />
+          </Col>
+        </Row>
 
-      {/* Input Field & Fetch Button */}
-      <Row className="p-3">
-        <InputGroup className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Enter query"
-            value={inputQuery}
-            onChange={(e) => setInputQuery(e.target.value)} // Updates input state, but does not fetch
-          />
-          <Button
-            variant="outline-secondary"
-            onClick={() => setQuery(inputQuery)} // Sets `query`, which triggers the fetch
-          >
-            Fetch
-          </Button>
-        </InputGroup>
-      </Row>
-    </Container>
+        <Row className="input-row">
+          <InputGroup className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Enter query"
+              value={inputQuery}
+              onChange={(e) => setInputQuery(e.target.value)}
+            />
+            <Button variant="outline-secondary" onClick={() => setQuery(inputQuery)}>
+              Fetch
+            </Button>
+          </InputGroup>
+        </Row>
+      </Container>
+    </div>
   );
 }
 
