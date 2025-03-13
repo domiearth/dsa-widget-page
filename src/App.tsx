@@ -24,12 +24,13 @@ function App() {
     setIsLoading(true);
     try {
       const host = VarUtils.getVar("host");
+      const sheetId = VarUtils.getVar('sheetid')!;
       if (!host) {
         console.error("Host variable is missing");
         return;
       }
 
-      const _url = new URLBuilder(host).addParameter("query", query).build();
+      const _url = new URLBuilder(host).addParameter("query", query).addParameter("sheetId", sheetId).build();
       console.log(`Fetching from URL: ${_url}`);
 
       const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
