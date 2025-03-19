@@ -25,6 +25,7 @@ function App() {
     try {
       const host = VarUtils.getVar("host");
       const sheetId = VarUtils.getVar("sheetid")!;
+      const testid =VarUtils.getVar("testid")!;
       if (!host) {
         console.error("Host variable is missing");
         return;
@@ -33,6 +34,7 @@ function App() {
       const _url = new URLBuilder(host)
         .addParameter("query", query)
         .addParameter("sheetId", sheetId)
+        .addParameter("testid", testid)
         .build();
 
       console.log(`Fetching from URL: ${_url}`);

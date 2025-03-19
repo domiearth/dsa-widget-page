@@ -6,11 +6,9 @@ interface HtmlViewerProps {
 
 const HtmlViewer = ({ htmlContent }: HtmlViewerProps) => {
   return (
-    <Container className="p-3" style={{ 
-      width: "100%", 
-      height: "100%", 
-      overflow: "auto",  // Enables scrolling inside the div
-      border: "1px solid #ccc"
+    <Container className="p-3" style={{
+      width: "100%",
+      height: "100%",
     }}>
       <iframe
         title="HTML Viewer"
