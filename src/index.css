@@ -48,8 +48,9 @@ body {
 /* Section below hero for the main content
 ------------------------------------- */
 .section-wrapper {
-  max-width: 1200px;
-  margin: -4rem auto 0; /* pulls up to overlap hero if you like that style */
+  /* max-width: 1200px; 原本固定最大寬度，可改為下面兩行  */
+  max-width: 95%;            /* or 90%, 98% ... 視需要調整 */
+  margin: -4rem auto 0;      /* 保持上方 -4rem 的效果，auto 會讓區塊自動置中 */
   padding: 2rem 1rem;
   background-color: #fff;
   border-radius: 0.5rem;
