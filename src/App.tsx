@@ -58,9 +58,9 @@ function App() {
     <div className="app-root">
       {/* Hero Section */}
       <section className="hero-section">
-        <h1 className="brand-title">Carbon Compass App</h1>
+        <h1 className="brand-title">NetZero Compass</h1>
         <p className="brand-subtitle">
-        domiearth service assistant widget 
+        淨零指南針
         </p>
       </section>
 
@@ -87,7 +87,7 @@ function App() {
           </Col>
         </Row>
 
-        <Row className="input-row">
+        <Row className="input-row hidden-row">
           <InputGroup className="mb-3">
             <Form.Control
               type="text"
