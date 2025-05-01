@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { Container, Form, Row, Col, Spinner, Modal, InputGroup, Button } from "react-bootstrap";
-import HtmlViewer from "./components/HtmlViewer";
-import MarkdownViewer from "./components/MarkdownViewer";
+import TableView from "./components/TableView";
+import CompanyDetailView from "./components/CompanyDetailView";
 import { HttpClient } from "./utils/http_client_utils";
 import { VarUtils } from "./utils/var_utils";
 import { URLBuilder } from "./helpers/URLBuilder";
+import { TEST_DATA } from "./constant";
 
 interface ApiResponse {
   view: string;
@@ -14,9 +15,10 @@ interface ApiResponse {
 function App() {
   const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
   const [query, setQuery] = useState(inputQuery);
-  const [markdownText, setMarkdownText] = useState("");
-  const [htmlContent, setHtmlContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Check if we're on the detail page
+  const isDetailPage = window.location.pathname === '/detail';
 
   const fetchData = useCallback(async () => {
     if (!query) return;
@@ -41,8 +43,6 @@ function App() {
       const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
       console.log("API Response:", response);
 
-      setHtmlContent(response.view);
-      setMarkdownText(response.content);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -53,6 +53,10 @@ function App() {
   useEffect(() => {
     fetchData();
   }, [fetchData, query]);
+
+  if (isDetailPage) {
+    return <CompanyDetailView />;
+  }
 
   return (
     <div className="app-root">
@@ -79,11 +83,8 @@ function App() {
       {/* Main Content */}
       <Container fluid className="section-wrapper">
         <Row className="content-row">
-          <Col xs={12} md={6} className="viewer-col">
-            <HtmlViewer htmlContent={htmlContent} />
-          </Col>
-          <Col xs={12} md={6} className="viewer-col">
-            <MarkdownViewer markdownText={markdownText} />
+          <Col xs={12}>
+            <TableView data={TEST_DATA.items} />
           </Col>
         </Row>
 
