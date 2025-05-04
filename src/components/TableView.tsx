@@ -54,12 +54,6 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
           <th onClick={() => requestSort('solution_description')} style={{ cursor: 'pointer' }}>
             Solution {sortConfig?.key === 'solution_description' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
-          <th onClick={() => requestSort('email')} style={{ cursor: 'pointer' }}>
-            Email {sortConfig?.key === 'email' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-          </th>
-          <th onClick={() => requestSort('phone')} style={{ cursor: 'pointer' }}>
-            Phone {sortConfig?.key === 'phone' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-          </th>
           <th onClick={() => requestSort('website')} style={{ cursor: 'pointer' }}>
             Website {sortConfig?.key === 'website' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
@@ -77,8 +71,6 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
           >
             <td>{item.company_name}</td>
             <td>{item.solution_description}</td>
-            <td>{item.email}</td>
-            <td>{item.phone}</td>
             <td>
               <a 
                 href={item.website} 
