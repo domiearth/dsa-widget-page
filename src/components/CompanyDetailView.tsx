@@ -32,6 +32,9 @@ ${companyData.website}
 ## Category
 ${companyData.category}
 
+## Carbon Emission
+${companyData.carbon_emission}
+
 ## Description
 ${companyData.description}
 `;

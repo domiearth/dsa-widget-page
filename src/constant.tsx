@@ -6,126 +6,140 @@ export interface CompanyData {
   website: string;
   category: string;
   description: string;
+  carbon_emission: number;
 }
 
 export const TEST_DATA: { items: CompanyData[] } = {
   "items": [
     {
-      "company_name": "BECIS - Berkeley Energy Commercial Industrial Solutions",
-      "solution_description": "能源使用管理及電力效率改善方案，例如安裝能源管理系統、使用數位分析優化店鋪能源耗用。",
-      "email": "info@be-cis.com",
-      "phone": "+66 2 248 4635",
-      "website": "https://be-cis.com/contact-us/",
+      "company_name": "Constant Energy",
+      "solution_description": "太陽能及節能解決方案，協助商業用戶安裝太陽能設備，降低電力來源碳排。",
+      "email": "info@constantenergy.net",
+      "phone": "+66 2 126 8245",
+      "website": "https://constantenergy.net/",
       "category": "店鋪營運",
-      "description": "### 分類：店鋪營運\n- 排放項目：電力使用\n- 碳排量：10,200 tCO₂e\n- 建議：導入能源管理系統與智慧監控，減少能源浪費，提升照明與空調設備效率，加強員工教育等。"
+      "carbon_emission": 10200,
+      "description": "### 分類：店鋪營運\n- 排放項目：電力使用\n- 碳排量：10,200 tCO₂e\n- 建議：考慮安裝太陽能發電，結合能源管理系統提升用電效率，降低購電碳排放。"
     },
     {
-      "company_name": "Osaka Gas (Thailand) Co., Ltd.",
-      "solution_description": "天然氣高效率設備與諮詢（如高效鍋爐維優/燃燒器調校/能源整合等）。",
-      "email": "info@ogt.co.th",
-      "phone": "+66 2 108 0872",
-      "website": "https://www.ogt.co.th/about-us",
+      "company_name": "Bangchak Corporation (BCPG)",
+      "solution_description": "推動天然氣效率與替代再生能源方案，如太陽能、風能等，協助企業替換高碳排燃料。",
+      "email": "pr@bangchak.co.th",
+      "phone": "+66 2 335 4555",
+      "website": "https://www.bangchak.co.th/en/greenovation-group/clean-power-business",
       "category": "店鋪營運",
-      "description": "### 分類：店鋪營運\n- 排放項目：天然氣使用\n- 碳排量：7,300 tCO₂e\n- 建議：導入高效燃燒設備、定期檢修、使用智慧監控用氣設備。"
+      "carbon_emission": 7300,
+      "description": "### 分類：店鋪營運\n- 排放項目：天然氣使用\n- 碳排量：7,300 tCO₂e\n- 建議：加裝高效率燃氣設備、或尋求再生能源（如熱泵、太陽能熱水器）取代天然氣。"
     },
     {
-      "company_name": "Sentinel Solution Co., Ltd.",
-      "solution_description": "企業淨水、節水解決方案，包括節水閥、減少用水與水處理系統優化。",
-      "email": "info@eatdgrease.com",
-      "phone": "+66 2 258 4545",
-      "website": "https://www.eatdgrease.com/water-saving",
+      "company_name": "Ecolab Thailand",
+      "solution_description": "提供智能節水和回收再利用系統，幫助餐廳減少用水，提高水資源效率。",
+      "email": "enquiries@ecolab.com",
+      "phone": "+66 2774 9800",
+      "website": "https://en-th.ecolab.com/expertise-and-innovation/water",
       "category": "店鋪營運",
-      "description": "### 分類：店鋪營運\n- 排放項目：用水\n- 碳排量：950 tCO₂e\n- 建議：更換節水裝置、推動用水回收與再利用，安裝即時用水管理系統。"
+      "carbon_emission": 950,
+      "description": "### 分類：店鋪營運\n- 排放項目：用水\n- 碳排量：950 tCO₂e\n- 建議：安裝節水設備與回收再利用系統，降低用水及其間接碳排放。"
     },
     {
-      "company_name": "FUG Kitchen Equipment",
-      "solution_description": "商用廚房LPG設備升級，高效燃燒器與設備節能設計。",
-      "email": "fug@kitchenequip.com",
-      "phone": "018-298-3070",
-      "website": "https://www.facebook.com/FUGkichenequipment/",
+      "company_name": "Advanced Biogas Thailand",
+      "solution_description": "推動廚房燃料由LPG轉為沼氣，同時提高轉換效率，也可考慮用電磁爐替換瓦斯爐。",
+      "email": "info@advancedbiofuelsusa.info",
+      "phone": "+66 2 123 4567",
+      "website": "https://advancedbiofuelsusa.info/thailand-new-facility-opens-to-produce-store-and-deliver-biogas",
       "category": "廚房設備",
-      "description": "### 分類：廚房設備\n- 排放項目：瓦斯爐燃燒（液化石油氣）\n- 碳排量：3,500 tCO₂e\n- 建議：更新高效燃燒器與定期維護、教育廚房人員節能操作。"
+      "carbon_emission": 3500,
+      "description": "### 分類：廚房設備\n- 排放項目：瓦斯爐燃燒（液化石油氣）\n- 碳排量：3,500 tCO₂e\n- 建議：可導入沼氣或高效率燃燒爐具，或考慮電氣化廚房以減少燃燒過程碳排放。"
     },
     {
-      "company_name": "A-Gas Thailand",
-      "solution_description": "冷媒全生命週期管理解決方案，協助冷媒回收，防止R-410A 洩漏。",
-      "email": "sales.th@agas.com",
-      "phone": "+66 2 136 7000",
-      "website": "https://www.agas.com/th/?c=en",
+      "company_name": "CAREL Thailand",
+      "solution_description": "提供天然冷媒（如R290）、CO₂及先進制冷監控管理，有效減少冷媒排放及洩漏。",
+      "email": "info@carel.com",
+      "phone": "+66 2 748 1993",
+      "website": "https://www.carel.co.th/natural-refrigerants",
       "category": "空調設備",
-      "description": "### 分類：空調設備\n- 排放項目：冷媒 R-410A 洩漏\n- 排放量：依實際使用量計算，高GWP指數（GWP=2088）\n- 建議：冷媒回收管理、安裝洩漏檢測系統、改用低GWP冷媒。"
+      "carbon_emission": 0,
+      "description": "### 分類：空調設備\n- 排放項目：冷媒R-410A洩漏\n- 碳排量：依實際洩漏量估算（高暖化係數2088）\n- 建議：高頻率保養、導入低 GWP 冷媒，或以CO₂等替代，降低環境衝擊。"
     },
     {
-      "company_name": "DHL Express Thailand",
-      "solution_description": "食品運輸碳排減量與綠色物流，包括運輸路線優化及車隊升級。",
-      "email": "th.customerservice@dhl.com",
+      "company_name": "DHL Thailand",
+      "solution_description": "提供綠色物流方案、電動運輸與生質柴油配送車隊，協助食材供應降低碳足跡。",
+      "email": "th.enquiry@dhl.com",
       "phone": "+66 2 345 5000",
-      "website": "https://www.dhl.com/discover/en-th/logistics-advice/sustainability-and-green-logistics/sustainable-logistics-for-businesses-in-thailand",
+      "website": "https://www.dhl.com/th-en/home/about-us/sustainability.html",
       "category": "物流運輸",
-      "description": "### 分類：物流運輸\n- 排放項目：食材運輸（柴油車）\n- 碳排量：2,000 tCO₂e\n- 建議：優化路線、車隊升級至更高能源效率與採購生質柴油。"
-    },
-    {
-      "company_name": "Thai EV (Electric Vehicle Logistics)",
-      "solution_description": "電動物流車隊整合，為食品產業提供電動運輸解決方案。",
-      "email": "sales@thai-ev.com",
-      "phone": "087-8888-700",
-      "website": "https://thai-ev.com/contact-us/",
-      "category": "物流運輸",
-      "description": "### 分類：物流運輸\n- 排放項目：食材運輸（電動車）\n- 碳排量：1,000 tCO₂e\n- 建議：導入電動商用車隊、充電網路優化，降低排放及營運成本。"
+      "carbon_emission": 2000,
+      "description": "### 分類：物流運輸\n- 排放項目：食材運輸（柴油車）\n- 碳排量：2,000 tCO₂e\n- 建議：採用電動車/生質柴油車，定期車隊維護及路線優化，減少燃油碳排。"
     },
     {
       "company_name": "DSV Thailand",
-      "solution_description": "可持續發展國際海運/空運服務，包含低碳運輸報告和減碳解決方案。",
-      "email": "info@th.dsv.com",
-      "phone": "+66 2 787 8888",
+      "solution_description": "投入電動卡車運輸，專注於廠商、餐飲業配送及減碳物流。",
+      "email": "th.customerservice@th.dsv.com",
+      "phone": "+66 2 739 5419",
       "website": "https://www.dsv.com/en-nl/destinations/transport-asia-pacific/transport-thailand",
+      "category": "物流運輸",
+      "carbon_emission": 1000,
+      "description": "### 分類：物流運輸\n- 排放項目：食材運輸（電動車）\n- 碳排量：1,000 tCO₂e\n- 建議：優先採用電動車隊配送，搭配智慧派車減少用電。」"
+    },
+    {
+      "company_name": "JAS Thailand",
+      "solution_description": "ECONTAINER方案與綠色船運，結合碳排查與碳補償措施，降低國際運輸碳排。",
+      "email": "thailand@jas.com",
+      "phone": "+66 2 209 9500",
+      "website": "https://www.jas.com/countries/thailand",
       "category": "供應鏈運輸",
-      "description": "### 分類：供應鏈運輸\n- 排放項目：進口食材運輸（海運）\n- 碳排量：3,100 tCO₂e\n- 建議：選擇使用低硫燃料的船舶、優化貨櫃利用率、協議綠色運輸。"
+      "carbon_emission": 3100,
+      "description": "### 分類：供應鏈運輸\n- 排放項目：進口食材運輸（海運）\n- 碳排量：3,100 tCO₂e\n- 建議：選擇兼具能源效率與碳補償服務之船運公司。"
     },
     {
-      "company_name": "Yusen Logistics Thailand",
-      "solution_description": "空運減碳服務，包括碳盤查、碳抵換與低碳航線建議。",
-      "email": "ylth.ml.ssmg.sales.mgt@th.yusen-logistics.com",
-      "phone": "+66 2 034 8000",
-      "website": "https://www.yusen-logistics.com/th_en/services/end-to-end-transportation/air-freight-forwarding",
+      "company_name": "DHL Thailand Air Freight",
+      "solution_description": "GoGreen Plus綠色航空貨運，支援SAF可持續航空燃油，降低空運碳排。",
+      "email": "th.enquiry@dhl.com",
+      "phone": "+66 2 345 5000",
+      "website": "https://www.dhl.com/th-en/home/about-us/sustainability.html",
       "category": "供應鏈運輸",
-      "description": "### 分類：供應鏈運輸\n- 排放項目：進口食材運輸（航空貨運）\n- 碳排量：5,800 tCO₂e\n- 建議：優先選擇直飛／高載重航班、參與航空碳補償計畫。"
+      "carbon_emission": 5800,
+      "description": "### 分類：供應鏈運輸\n- 排放項目：進口食材運輸（航空貨運）\n- 碳排量：5,800 tCO₂e\n- 建議：採用SAF航空燃油服務，優化運輸路線，降低碳排。」"
     },
     {
-      "company_name": "Mobisoft Infotech (Corporate Carpool Solutions)",
-      "solution_description": "企業員工共乘出勤方案，減少私人汽車通勤和交通壅塞。",
-      "email": "sales@mobisoftinfotech.com",
-      "phone": "+1 855 572 2777",
-      "website": "https://mobisoftinfotech.com/solutions/corporate-carpooling-solution",
+      "company_name": "GrabHitch Thailand",
+      "solution_description": "以GrabHitch平台推廣員工共乘服務，減少私家車數量與碳排放。",
+      "email": "support.th@grab.com",
+      "phone": "02-021-2500",
+      "website": "https://www.grab.com/th/en/hitch/",
       "category": "員工通勤",
-      "description": "### 分類：員工通勤\n- 排放項目：私家車（汽油）\n- 碳排量：600 tCO₂e\n- 建議：推動企業員工共乘方案、提供接駁車、提倡低排交通工具。"
+      "carbon_emission": 600,
+      "description": "### 分類：員工通勤\n- 排放項目：私家車（汽油）\n- 碳排量：600 tCO₂e\n- 建議：鼓勵共乘App與企業交通車，提升上班交通載運效率。"
     },
     {
-      "company_name": "Mass Rapid Transit Authority of Thailand (MRTA)",
-      "solution_description": "推廣大眾運輸/捷運轉乘解決方案，強化企業/員工聯繫與團體票優惠。",
-      "email": "saraban@mrta.co.th",
-      "phone": "+66 2 716 4000",
-      "website": "https://www.mrta.co.th/en/contact",
+      "company_name": "SYSTRA Thailand",
+      "solution_description": "提供企業/機構大眾運輸與捷運團體票管理、路線優化、通勤鼓勵方案。",
+      "email": "contact-th@systra.com",
+      "phone": "+66 2 267 4310",
+      "website": "https://www.systra.com/thailand/",
       "category": "員工通勤",
-      "description": "### 分類：員工通勤\n- 排放項目：大眾運輸（電車、捷運）\n- 碳排量：200 tCO₂e\n- 建議：鼓勵使用捷運/電車通勤、推動企業團體月票補助。"
+      "carbon_emission": 200,
+      "description": "### 分類：員工通勤\n- 排放項目：大眾運輸（電車、捷運）\n- 碳排量：200 tCO₂e\n- 建議：促進員工使用捷運/公車，提供搭乘鼓勵金，減少單人車輛出勤。」"
     },
     {
-      "company_name": "LightBlue Consulting (Thailand)",
-      "solution_description": "餐飲及餐廚廢棄物減量系統，包含食材管理與智慧監控。",
-      "email": "info@lightblueconsulting.com",
-      "phone": "+66 2 107 1374",
-      "website": "https://www.lightblueconsulting.com/",
+      "company_name": "Food Waste Hub Thailand",
+      "solution_description": "協助企業與餐廳落實餐廚廢棄物回收，推動有機物資源再利用（如堆肥、餵豬等）",
+      "email": "hello@foodwastehub.com",
+      "phone": "(+66) 2-123-1234",
+      "website": "https://www.foodwastehub.com/en/about-us/",
       "category": "廢棄物管理",
-      "description": "### 分類：廢棄物管理\n- 排放項目：餐廚廢棄物處理\n- 碳排量：1,200 tCO₂e\n- 建議：導入智慧廚餘管理系統、廚餘堆肥循環再利用並減少浪費。"
+      "carbon_emission": 1200,
+      "description": "### 分類：廢棄物管理\n- 排放項目：餐廚廢棄物處理\n- 碳排量：1,200 tCO₂e\n- 建議：與專業回收/堆肥單位合作，實現廚餘分流與資源化減碳。"
     },
     {
-      "company_name": "WHA Utilities & Power Public Company Limited",
-      "solution_description": "工業/商業污水處理減排與再利用工程，提升水處理效率，減少GHG排放。",
-      "email": "info@wha-up.com",
-      "phone": "+66 2 719 9559",
-      "website": "https://www.wha-up.com/en/utilities/wastewater-treatment",
+      "company_name": "Goshu Kohsan Co., Ltd.",
+      "solution_description": "設計並施工高效污水處理系統，專為餐飲和食品產業客戶量身訂做。",
+      "email": "info@goshukohsan.com",
+      "phone": "+66 2 036 9009–11",
+      "website": "https://www.goshukohsan.com/wastewater-treatment",
       "category": "廢水處理",
-      "description": "### 分類：廢水處理\n- 排放項目：污水處理\n- 碳排量：1,500 tCO₂e\n- 建議：導入高效污水處理、回收再利用、設置厭氧處理減甲烷排放。"
+      "carbon_emission": 1500,
+      "description": "### 分類：廢水處理\n- 排放項目：污水處理\n- 碳排量：1,500 tCO₂e\n- 建議：優化污水處理流程，導入高效厭氧/好氧系統以減少碳排放與甲烷逸散。"
     }
   ]
 };
