@@ -48,17 +48,23 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
     <Table striped bordered hover responsive>
       <thead>
         <tr>
-          <th onClick={() => requestSort('公司名稱')} style={{ cursor: 'pointer' }}>
-            公司名稱 {sortConfig?.key === '公司名稱' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
+            Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
-          <th onClick={() => requestSort('解決方法')} style={{ cursor: 'pointer' }}>
-            解決方法 {sortConfig?.key === '解決方法' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          <th onClick={() => requestSort('solution_description')} style={{ cursor: 'pointer' }}>
+            Solution {sortConfig?.key === 'solution_description' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
-          <th onClick={() => requestSort('聯絡資訊')} style={{ cursor: 'pointer' }}>
-            聯絡資訊 {sortConfig?.key === '聯絡資訊' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          <th onClick={() => requestSort('email')} style={{ cursor: 'pointer' }}>
+            Email {sortConfig?.key === 'email' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
-          <th onClick={() => requestSort('官方網站')} style={{ cursor: 'pointer' }}>
-            官方網站 {sortConfig?.key === '官方網站' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          <th onClick={() => requestSort('phone')} style={{ cursor: 'pointer' }}>
+            Phone {sortConfig?.key === 'phone' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          </th>
+          <th onClick={() => requestSort('website')} style={{ cursor: 'pointer' }}>
+            Website {sortConfig?.key === 'website' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          </th>
+          <th onClick={() => requestSort('category')} style={{ cursor: 'pointer' }}>
+            Category {sortConfig?.key === 'category' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
         </tr>
       </thead>
@@ -69,19 +75,21 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
             onClick={() => handleRowClick(item)}
             style={{ cursor: 'pointer' }}
           >
-            <td>{item.公司名稱}</td>
-            <td>{item.解決方法}</td>
-            <td>{item.聯絡資訊}</td>
+            <td>{item.company_name}</td>
+            <td>{item.solution_description}</td>
+            <td>{item.email}</td>
+            <td>{item.phone}</td>
             <td>
               <a 
-                href={item.官方網站} 
+                href={item.website} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()} // Prevent row click when clicking the link
               >
-                {item.官方網站}
+                {item.website}
               </a>
             </td>
+            <td>{item.category}</td>
           </tr>
         ))}
       </tbody>

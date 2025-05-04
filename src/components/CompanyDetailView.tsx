@@ -15,19 +15,25 @@ const CompanyDetailView: React.FC = () => {
 
   // Convert company data to markdown format
   const markdownContent = `
-# ${companyData.公司名稱}
+# ${companyData.company_name}
 
-## 解決方法
-${companyData.解決方法}
+## Solution
+${companyData.solution_description}
 
-## 聯絡資訊
-${companyData.聯絡資訊}
+## Email
+${companyData.email}
 
-## 官方網站
-${companyData.官方網站}
+## Phone
+${companyData.phone}
 
-## 詳細資訊
-${companyData.敘述}
+## Website
+${companyData.website}
+
+## Category
+${companyData.category}
+
+## Description
+${companyData.description}
 `;
 
   return (
