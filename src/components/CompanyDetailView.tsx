@@ -17,6 +17,9 @@ const CompanyDetailView: React.FC = () => {
   const markdownContent = `
 # ${companyData.company_name}
 
+## Company Description
+${companyData.company_description}
+
 ## Solution
 ${companyData.solution_description}
 
@@ -31,6 +34,9 @@ ${companyData.website}
 
 ## Category
 ${companyData.category}
+
+## Emission Source
+${companyData.emission_source}
 
 ## Carbon Emission
 ${companyData.carbon_emission}

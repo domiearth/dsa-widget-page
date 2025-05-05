@@ -67,6 +67,15 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
     <Table striped bordered hover responsive>
       <thead>
         <tr>
+          <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
+            Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          </th>
+          <th onClick={() => requestSort('category')} style={{ cursor: 'pointer' }}>
+            Category {sortConfig?.key === 'category' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          </th>
+          <th>
+            Emission Source
+          </th>
           <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
             Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
@@ -75,12 +84,6 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
           </th>
           <th onClick={() => requestSort('website')} style={{ cursor: 'pointer' }}>
             Website {sortConfig?.key === 'website' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-          </th>
-          <th onClick={() => requestSort('category')} style={{ cursor: 'pointer' }}>
-            Category {sortConfig?.key === 'category' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-          </th>
-          <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
-            Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
         </tr>
       </thead>
@@ -91,6 +94,9 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
             onClick={() => handleRowClick(item)}
             style={{ cursor: 'pointer' }}
           >
+            <td>{getPercent(item.carbon_emission)}</td>
+            <td>{item.category}</td>
+            <td>{item.emission_source}</td>
             <td>{item.company_name}</td>
             <td>{item.solution_description}</td>
             <td>
@@ -103,8 +109,6 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
                 {item.website}
               </a>
             </td>
-            <td>{item.category}</td>
-            <td>{getPercent(item.carbon_emission)}</td>
           </tr>
         ))}
       </tbody>
