@@ -15,6 +15,20 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
   // Calculate total carbon emission
   const totalEmission = data.reduce((sum, item) => sum + (item.carbon_emission || 0), 0);
 
+  // Calculate category emission percent map
+  const activityItemPercentMap: Record<string, string> = React.useMemo(() => {
+    const activityTotals: Record<string, number> = {};
+    data.forEach(item => {
+      if (!activityTotals[item.activity_item]) activityTotals[item.activity_item] = 0;
+      activityTotals[item.activity_item] += item.carbon_emission || 0;
+    });
+    const result: Record<string, string> = {};
+    Object.entries(activityTotals).forEach(([act, value]) => {
+      result[act] = totalEmission ? ((value / totalEmission) * 100).toFixed(1) + '%': '0%';
+    });
+    return result;
+  }, [data, totalEmission]);
+
   // Helper to get percent for a row
   const getPercent = (value: number) => {
     if (!totalEmission) return '0%';
@@ -70,11 +84,11 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
           <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
             Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
-          <th onClick={() => requestSort('category')} style={{ cursor: 'pointer' }}>
-            Category {sortConfig?.key === 'category' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+          <th onClick={() => requestSort('activity_item')} style={{ cursor: 'pointer' }}>
+            Activity Item {sortConfig?.key === 'activity_item' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
-          <th>
-            Emission Source
+          <th onClick={() => requestSort('emission_source')} style={{ cursor: 'pointer' }}>
+            Emission Source {sortConfig?.key === 'emission_source' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
           </th>
           <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
             Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
@@ -95,7 +109,7 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
             style={{ cursor: 'pointer' }}
           >
             <td>{getPercent(item.carbon_emission)}</td>
-            <td>{item.category}</td>
+            <td>{activityItemPercentMap[item.activity_item] ? `${item.activity_item} (${activityItemPercentMap[item.activity_item]})` : item.activity_item}</td>
             <td>{item.emission_source}</td>
             <td>{item.company_name}</td>
             <td>{item.solution_description}</td>

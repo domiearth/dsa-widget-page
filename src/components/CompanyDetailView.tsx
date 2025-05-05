@@ -32,8 +32,8 @@ ${companyData.phone}
 ## Website
 ${companyData.website}
 
-## Category
-${companyData.category}
+## Activity Item
+${companyData.activity_item}
 
 ## Emission Source
 ${companyData.emission_source}

@@ -9,7 +9,7 @@ interface MarkdownViewerProps {
 const MarkdownViewer: React.FC<MarkdownViewerProps> = ({ markdownText }) => {
   return (
     <Container className="p-3" style={{
-      maxHeight: "500px",
+      height: "100vh",
       overflow: "auto",  // Enables scrolling inside the div
       border: "1px solid #ccc"
     }} >

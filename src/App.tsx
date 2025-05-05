@@ -16,6 +16,7 @@ function App() {
   const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
   const [query, setQuery] = useState(inputQuery);
   const [isLoading, setIsLoading] = useState(false);
+  const [tableData, setTableData] = useState(TEST_DATA.items);
 
   // Check if we're on the detail page
   const isDetailPage = window.location.pathname === '/detail';
@@ -84,7 +85,7 @@ function App() {
       <Container fluid className="section-wrapper">
         <Row className="content-row">
           <Col xs={12}>
-            <TableView data={TEST_DATA.items} />
+            <TableView data={tableData} />
           </Col>
         </Row>
 
