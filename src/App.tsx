@@ -42,6 +42,7 @@ function App() {
 
       console.log(`Fetching from URL: ${_url}`);
       const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
+      setTableData(TEST_DATA.items);
       console.log("API Response:", response);
 
     } catch (error) {
