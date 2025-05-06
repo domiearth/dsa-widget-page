@@ -132,14 +132,14 @@ ${company.description}
             <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
               Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
-            <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
-              Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-            </th>
             <th>
               Improvement Measures
             </th>
             <th onClick={() => requestSort('solution_description')} style={{ cursor: 'pointer' }}>
               Solution {sortConfig?.key === 'solution_description' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+            </th>
+            <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
+              Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th onClick={() => requestSort('website')} style={{ cursor: 'pointer' }}>
               Website {sortConfig?.key === 'website' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
@@ -156,9 +156,9 @@ ${company.description}
               <td>{activityItemPercentMap[item.activity_item] ? `${item.activity_item} (${activityItemPercentMap[item.activity_item]})` : item.activity_item}</td>
               <td>{item.emission_source}</td>
               <td>{getPercent(item.carbon_emission)}</td>
-              <td>{item.company_name}</td>
               <td>{item.improvement_measures}</td>
               <td>{item.solution_description}</td>
+              <td>{item.company_name}</td>
               <td>
                 <a 
                   href={item.website} 
