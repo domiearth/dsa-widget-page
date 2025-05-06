@@ -5,18 +5,14 @@ import CompanyDetailView from "./components/CompanyDetailView";
 import { HttpClient } from "./utils/http_client_utils";
 import { VarUtils } from "./utils/var_utils";
 import { URLBuilder } from "./helpers/URLBuilder";
-import { TEST_DATA } from "./constant";
+import { CompanyData } from "./constant";
 
-interface ApiResponse {
-  view: string;
-  content: string;
-}
 
 function App() {
   const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
   const [query, setQuery] = useState(inputQuery);
   const [isLoading, setIsLoading] = useState(false);
-  const [tableData, setTableData] = useState(TEST_DATA.items);
+  const [tableData, setTableData] = useState<CompanyData[]>([]);
 
   // Check if we're on the detail page
   const isDetailPage = window.location.pathname === '/detail';
@@ -29,6 +25,7 @@ function App() {
       const host = VarUtils.getVar("host");
       const sheetId = VarUtils.getVar("sheetid")!;
       const testid =VarUtils.getVar("testid")!;
+      const inputType = VarUtils.getVar("input_type")!;
       if (!host) {
         console.error("Host variable is missing");
         return;
@@ -36,13 +33,15 @@ function App() {
 
       const _url = new URLBuilder(host)
         .addParameter("query", query)
+        .addParameter("input_type", inputType)
         .addParameter("sheetId", sheetId)
         .addParameter("testid", testid)
         .build();
 
       console.log(`Fetching from URL: ${_url}`);
-      const response: ApiResponse = await HttpClient.get<ApiResponse>(_url);
-      setTableData(TEST_DATA.items);
+      const response: CompanyData[] = await HttpClient.get<CompanyData[]>(_url);
+      console.log(response);
+      setTableData(response);
       console.log("API Response:", response);
 
     } catch (error) {
