@@ -84,6 +84,9 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
   const getMarkdownContent = (company: CompanyData) => `
 # ${company.company_name}
 
+## Solution No
+${company.solution_no}
+
 ## Company Description
 ${company.company_description}
 
@@ -108,6 +111,9 @@ ${company.emission_source}
 ## Carbon Emission
 ${company.carbon_emission}
 
+## Improvement Measures
+${company.improvement_measures}
+
 ## Description
 ${company.description}
 `;
@@ -117,17 +123,20 @@ ${company.description}
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
-              Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-            </th>
             <th onClick={() => requestSort('activity_item')} style={{ cursor: 'pointer' }}>
               Activity Item {sortConfig?.key === 'activity_item' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th onClick={() => requestSort('emission_source')} style={{ cursor: 'pointer' }}>
               Emission Source {sortConfig?.key === 'emission_source' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
+            <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
+              Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+            </th>
             <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
               Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+            </th>
+            <th>
+              Improvement Measures
             </th>
             <th onClick={() => requestSort('solution_description')} style={{ cursor: 'pointer' }}>
               Solution {sortConfig?.key === 'solution_description' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
@@ -144,10 +153,11 @@ ${company.description}
               onClick={() => handleRowClick(item)}
               style={{ cursor: 'pointer' }}
             >
-              <td>{getPercent(item.carbon_emission)}</td>
               <td>{activityItemPercentMap[item.activity_item] ? `${item.activity_item} (${activityItemPercentMap[item.activity_item]})` : item.activity_item}</td>
               <td>{item.emission_source}</td>
+              <td>{getPercent(item.carbon_emission)}</td>
               <td>{item.company_name}</td>
+              <td>{item.improvement_measures}</td>
               <td>{item.solution_description}</td>
               <td>
                 <a 
