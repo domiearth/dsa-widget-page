@@ -9,7 +9,7 @@ import { CompanyData } from "./constant";
 
 
 function App() {
-  console.error("Hi App!!");
+  console.info("Hi App!!");
   const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
   const [query, setQuery] = useState(inputQuery);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,10 @@ function App() {
   const isDetailPage = window.location.pathname === '/detail';
 
   const fetchData = useCallback(async () => {
-    if (!query) return;
+    if (!query){
+      console.info("!query return");
+      return;
+    } 
     setIsLoading(true);
 
     try {
