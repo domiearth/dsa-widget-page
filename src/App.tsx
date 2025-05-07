@@ -9,6 +9,7 @@ import { CompanyData } from "./constant";
 
 
 function App() {
+  console.error("Hi App!!");
   const [inputQuery, setInputQuery] = useState(VarUtils.getVar("query") || "");
   const [query, setQuery] = useState(inputQuery);
   const [isLoading, setIsLoading] = useState(false);
