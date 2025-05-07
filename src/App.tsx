@@ -19,10 +19,6 @@ function App() {
   const isDetailPage = window.location.pathname === '/detail';
 
   const fetchData = useCallback(async () => {
-    if (!query){
-      console.info("!query return");
-      return;
-    } 
     setIsLoading(true);
 
     try {
