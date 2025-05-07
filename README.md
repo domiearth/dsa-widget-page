@@ -52,4 +52,5 @@ export default tseslint.config({
 ### test :
 ```url
 http://localhost:5173/?input_type=mock_fixed_result&testid=wowprime&host=https://n8n.domiearth.com/webhook/977ed4a2-b5bc-455a-a2ab-131ecd71ff40
+https://domiearth.github.io/dsa-widget-page/?input_type=mock_fixed_result&testid=wowprime&host=https%3A%2F%2Fn8n.domiearth.com%2Fwebhook%2F977ed4a2-b5bc-455a-a2ab-131ecd71ff40
 ```
