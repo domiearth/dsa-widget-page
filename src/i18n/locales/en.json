@@ -1,0 +1,16 @@
+{
+  "brandTitle": "NetZero Compass",
+  "brandSubtitle": "淨零指南針",
+  "loading": "Loading data, please wait...",
+  "inputPlaceholder": "Enter query",
+  "fetch": "Fetch",
+  "activityItem": "Activity Item",
+  "emissionSource": "Emission Source",
+  "carbonEmissionPercent": "Carbon Emission (%)",
+  "improvementMeasures": "Improvement Measures",
+  "solution": "Solution",
+  "companyName": "Company Name",
+  "website": "Website",
+  "companyDetails": "Company Details",
+  "close": "Close"
+} 

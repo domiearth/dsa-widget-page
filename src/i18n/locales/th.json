@@ -1,0 +1,16 @@
+{
+  "brandTitle": "เข็มทิศ NetZero",
+  "brandSubtitle": "คู่มือ NetZero",
+  "loading": "กำลังโหลดข้อมูล กรุณารอสักครู่...",
+  "inputPlaceholder": "กรอกคำค้นหา",
+  "fetch": "ค้นหา",
+  "activityItem": "กิจกรรม",
+  "emissionSource": "แหล่งกำเนิดการปล่อย",
+  "carbonEmissionPercent": "สัดส่วนการปล่อยคาร์บอน (%)",
+  "improvementMeasures": "มาตรการปรับปรุง",
+  "solution": "โซลูชัน",
+  "companyName": "ชื่อบริษัท",
+  "website": "เว็บไซต์",
+  "companyDetails": "รายละเอียดบริษัท",
+  "close": "ปิด"
+} 

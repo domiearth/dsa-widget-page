@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table, Modal, Button } from 'react-bootstrap';
 import { CompanyData } from '../constant';
 import MarkdownViewer from './MarkdownViewer';
+import { useTranslation } from 'react-i18next';
 
 interface TableViewProps {
   data: CompanyData[];
@@ -15,6 +16,7 @@ const TableView: React.FC<TableViewProps> = ({ data }) => {
 
   const [selectedCompany, setSelectedCompany] = useState<CompanyData | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const { t } = useTranslation();
 
   // Calculate total carbon emission
   const totalEmission = data.reduce((sum, item) => sum + (item.carbon_emission || 0), 0);
@@ -124,25 +126,25 @@ ${company.description}
         <thead>
           <tr>
             <th onClick={() => requestSort('activity_item')} style={{ cursor: 'pointer' }}>
-              Activity Item {sortConfig?.key === 'activity_item' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              {t('activityItem')} {sortConfig?.key === 'activity_item' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th onClick={() => requestSort('emission_source')} style={{ cursor: 'pointer' }}>
-              Emission Source {sortConfig?.key === 'emission_source' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              {t('emissionSource')} {sortConfig?.key === 'emission_source' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th onClick={() => requestSort('carbon_emission_percent')} style={{ cursor: 'pointer' }}>
-              Carbon Emission (%) {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              {t('carbonEmissionPercent')} {sortConfig?.key === 'carbon_emission_percent' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th>
-              Improvement Measures
+              {t('improvementMeasures')}
             </th>
             <th onClick={() => requestSort('solution_description')} style={{ cursor: 'pointer' }}>
-              Solution {sortConfig?.key === 'solution_description' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              {t('solution')} {sortConfig?.key === 'solution_description' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th onClick={() => requestSort('company_name')} style={{ cursor: 'pointer' }}>
-              Company Name {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              {t('companyName')} {sortConfig?.key === 'company_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
             <th onClick={() => requestSort('website')} style={{ cursor: 'pointer' }}>
-              Website {sortConfig?.key === 'website' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              {t('website')} {sortConfig?.key === 'website' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
             </th>
           </tr>
         </thead>
@@ -175,7 +177,7 @@ ${company.description}
       </Table>
       <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
         <Modal.Header closeButton>
-          <Modal.Title>Company Details</Modal.Title>
+          <Modal.Title>{t('companyDetails')}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ padding: 0 }}>
           {selectedCompany && (
@@ -184,7 +186,7 @@ ${company.description}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
