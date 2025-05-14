@@ -29,6 +29,7 @@ function App() {
       const sheetId = VarUtils.getVar("sheetid")!;
       const testid =VarUtils.getVar("testid")!;
       const inputType = VarUtils.getVar("input_type")!;
+      const lang = i18n.language;
       if (!host) {
         console.error("Host variable is missing");
         return;
@@ -39,6 +40,7 @@ function App() {
         .addParameter("input_type", inputType)
         .addParameter("sheetid", sheetId)
         .addParameter("testid", testid)
+        .addParameter("lang", lang)
         .build();
 
       console.log(`Fetching from URL: ${_url}`);
@@ -52,7 +54,7 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  }, [query]);
+  }, [query, i18n.language]);
 
   useEffect(() => {
     fetchData();
