@@ -8,6 +8,7 @@ import { URLBuilder } from "./helpers/URLBuilder";
 import { CompanyData } from "./constant";
 import "./i18n";
 import { useTranslation } from "react-i18next";
+import { CommUtils } from "./utils/comm_utils";
 
 
 function App() {
@@ -29,6 +30,11 @@ function App() {
       const sheetId = VarUtils.getVar("sheetid")!;
       const testid =VarUtils.getVar("testid")!;
       const inputType = VarUtils.getVar("input_type")!;
+      const inputLang = VarUtils.getVar("lang");
+      if(CommUtils.isTextNotBlank(inputLang)){
+        i18n.changeLanguage(inputLang as string);
+      }
+      const cache = CommUtils.parseBoolean(VarUtils.getVar("cache")!) ;
       const lang = i18n.language;
       if (!host) {
         console.error("Host variable is missing");
@@ -36,6 +42,7 @@ function App() {
       }
 
       const _url = new URLBuilder(host)
+        .addParameter("cache", cache+"")
         .addParameter("query", query)
         .addParameter("input_type", inputType)
         .addParameter("sheetid", sheetId)
