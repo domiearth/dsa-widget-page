@@ -35,7 +35,7 @@ function App() {
         i18n.changeLanguage(inputLang as string);
       }
       const cache = CommUtils.parseBoolean(VarUtils.getVar("cache")!) ;
-      const lang = i18n.language;
+      const lang = inputLang || i18n.language;
       if (!host) {
         console.error("Host variable is missing");
         return;
@@ -68,7 +68,10 @@ function App() {
   }, [fetchData, query]);
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+    // Update URL with new language parameter and refresh page
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', lng);
+    window.location.href = url.toString();
   };
 
   if (isDetailPage) {
