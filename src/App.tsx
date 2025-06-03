@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { Container, Form, Row, Col, Spinner, Modal, InputGroup, Button } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TableView from "./components/TableView";
 import CompanyDetailView from "./components/CompanyDetailView";
+import Login from "./pages/Login";
 import { HttpClient } from "./utils/http_client_utils";
 import { VarUtils } from "./utils/var_utils";
 import { URLBuilder } from "./helpers/URLBuilder";
@@ -9,7 +11,6 @@ import { CompanyData } from "./constant";
 import "./i18n";
 import { useTranslation } from "react-i18next";
 import { CommUtils } from "./utils/comm_utils";
-
 
 function App() {
   console.info("Hi App!!");
@@ -79,62 +80,70 @@ function App() {
   }
 
   return (
-    <div className="app-root">
-      {/* Language Switcher */}
-      <div style={{ position: 'absolute', top: 16, right: 24, zIndex: 1000 }}>
-        <select
-          value={i18n.language}
-          onChange={e => changeLanguage(e.target.value)}
-          style={{ padding: '4px 8px', borderRadius: 4 }}
-        >
-          <option value="zh">中文</option>
-          <option value="en">English</option>
-          <option value="th">ไทย</option>
-        </select>
-      </div>
-      {/* Hero Section */}
-      <section className="hero-section">
-        <h1 className="brand-title">{t('brandTitle')}</h1>
-        <p className="brand-subtitle">
-        {t('brandSubtitle')}
-        </p>
-      </section>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/detail" element={<CompanyDetailView />} />
+        <Route path="/" element={
+          <div className="app-root">
+            {/* Language Switcher */}
+            <div style={{ position: 'absolute', top: 16, right: 24, zIndex: 1000 }}>
+              <select
+                value={i18n.language}
+                onChange={e => changeLanguage(e.target.value)}
+                style={{ padding: '4px 8px', borderRadius: 4 }}
+              >
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="th">ไทย</option>
+              </select>
+            </div>
+            {/* Hero Section */}
+            <section className="hero-section">
+              <h1 className="brand-title">{t('brandTitle')}</h1>
+              <p className="brand-subtitle">
+                {t('brandSubtitle')}
+              </p>
+            </section>
 
-      {/* Loading Overlay */}
-      {isLoading && (
-        <Modal show={true} centered backdrop="static">
-          <Modal.Body className="text-center">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-            <p>{t('loading')}</p>
-          </Modal.Body>
-        </Modal>
-      )}
+            {/* Loading Overlay */}
+            {isLoading && (
+              <Modal show={true} centered backdrop="static">
+                <Modal.Body className="text-center">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                  <p>{t('loading')}</p>
+                </Modal.Body>
+              </Modal>
+            )}
 
-      {/* Main Content */}
-      <Container fluid className="section-wrapper">
-        <Row className="content-row">
-          <Col xs={12}>
-            <TableView data={tableData} />
-          </Col>
-        </Row>
+            {/* Main Content */}
+            <Container fluid className="section-wrapper">
+              <Row className="content-row">
+                <Col xs={12}>
+                  <TableView data={tableData} />
+                </Col>
+              </Row>
 
-        <Row className="input-row hidden-row">
-          <InputGroup className="mb-3">
-            <Form.Control
-              type="text"
-              placeholder={t('inputPlaceholder')}
-              value={inputQuery}
-              onChange={(e) => setInputQuery(e.target.value)}
-            />
-            <Button variant="outline-secondary" onClick={() => setQuery(inputQuery)}>
-              {t('fetch')}
-            </Button>
-          </InputGroup>
-        </Row>
-      </Container>
-    </div>
+              <Row className="input-row hidden-row">
+                <InputGroup className="mb-3">
+                  <Form.Control
+                    type="text"
+                    placeholder={t('inputPlaceholder')}
+                    value={inputQuery}
+                    onChange={(e) => setInputQuery(e.target.value)}
+                  />
+                  <Button variant="outline-secondary" onClick={() => setQuery(inputQuery)}>
+                    {t('fetch')}
+                  </Button>
+                </InputGroup>
+              </Row>
+            </Container>
+          </div>
+        } />
+      </Routes>
+    </Router>
   );
 }
 
