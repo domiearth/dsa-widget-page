@@ -4,7 +4,7 @@ import { FaGoogle, FaMicrosoft } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { GoogleLogin } from '@react-oauth/google';
 import { useMsal } from '@azure/msal-react';
-import { GOOGLE_CLIENT_ID, msalConfig } from '../config/auth';
+import { GOOGLE_CLIENT_ID } from '../config/auth';
 import './Login.css';
 
 const Login: React.FC = () => {
@@ -43,7 +43,7 @@ const Login: React.FC = () => {
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
                 onError={handleGoogleError}
-                useOneTap
+                useOneTap={true}
                 clientId={GOOGLE_CLIENT_ID}
                 render={renderProps => (
                   <Button 
