@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Button, Row, Col } from 'react-bootstrap';
-import { FaGoogle, FaMicrosoft } from 'react-icons/fa';
+import { FaMicrosoft } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, CredentialResponse, GoogleOAuthProvider } from '@react-oauth/google';
 import { useMsal } from '@azure/msal-react';
 import { GOOGLE_CLIENT_ID } from '../config/auth';
 import './Login.css';
@@ -11,7 +11,7 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
   const { instance } = useMsal();
 
-  const handleGoogleSuccess = (credentialResponse: any) => {
+  const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
     console.log('Google Login Success:', credentialResponse);
     // Here you would typically send the credential to your backend
     // and handle the authentication flow
@@ -40,23 +40,17 @@ const Login: React.FC = () => {
           <div className="login-box">
             <h2 className="text-center mb-4">{t('login.title', 'Login')}</h2>
             <div className="d-grid gap-3">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={handleGoogleError}
-                useOneTap={true}
-                clientId={GOOGLE_CLIENT_ID}
-                render={renderProps => (
-                  <Button 
-                    variant="outline-danger" 
-                    className="login-button"
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    <FaGoogle className="me-2" />
-                    {t('login.withGoogle', 'Continue with Google')}
-                  </Button>
-                )}
-              />
+              <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleError}
+                  useOneTap={true}
+                  type="standard"
+                  theme="outline"
+                  text="continue_with"
+                  shape="rectangular"
+                />
+              </GoogleOAuthProvider>
               <Button 
                 variant="outline-primary" 
                 className="login-button"
