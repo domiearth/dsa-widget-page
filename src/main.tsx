@@ -6,7 +6,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import App from './App'
 import { msalConfig, GOOGLE_CLIENT_ID } from './config/auth'
 import './index.css'
-import "bootstrap/dist/css/bootstrap.min.css"; // 引入 Bootstrap 樣式
+
 
 const msalInstance = new PublicClientApplication(msalConfig)
 

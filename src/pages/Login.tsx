@@ -6,6 +6,7 @@ import { GoogleLogin, CredentialResponse, GoogleOAuthProvider } from '@react-oau
 import { useMsal } from '@azure/msal-react';
 import { GOOGLE_CLIENT_ID } from '../config/auth';
 import './Login.css';
+import "bootstrap/dist/css/bootstrap.min.css"; // 引入 Bootstrap 樣式
 
 const Login: React.FC = () => {
   const { t } = useTranslation();

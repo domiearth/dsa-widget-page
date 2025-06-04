@@ -17,6 +17,7 @@
     "@types/node": "^22.15.29",
     "bootstrap": "^5.3.3",
     "i18next": "^23.10.0",
+    "primereact": "^10.9.6",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
