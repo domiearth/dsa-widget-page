@@ -1,0 +1,9 @@
+.p-panel .p-panel-content {
+    padding: 0rem;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #4b5563;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top: 0 none;
+  }
