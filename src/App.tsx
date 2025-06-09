@@ -4,6 +4,7 @@ import CompanyDetailView from "./components/CompanyDetailView";
 import Report from "./pages/Report";
 import DemoListPage from "./pages/DemoListPage";
 import DemoTreePage from "./pages/DemoTreePage";
+import ExplorePage from "./pages/ExplorePage";
 
 function App() {
   // Get current page from URL query parameter
@@ -25,6 +26,8 @@ function App() {
         return <DemoListPage />;
       case 'demo_tree':
         return <DemoTreePage />;
+      case 'explore':
+        return <ExplorePage />;
       case 'home':
       default:
         return <Report />;
