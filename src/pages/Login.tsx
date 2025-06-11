@@ -14,6 +14,8 @@ const Login: React.FC = () => {
 
   const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
     console.log('Google Login Success:', credentialResponse);
+    alert(credentialResponse.credential);
+    console.log(credentialResponse.credential);
     // Here you would typically send the credential to your backend
     // and handle the authentication flow
   };
