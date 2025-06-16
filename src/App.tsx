@@ -5,10 +5,14 @@ import Report from "./pages/Report";
 import DemoListPage from "./pages/DemoListPage";
 import DemoTreePage from "./pages/DemoTreePage";
 import ExplorePage from "./pages/ExplorePage";
+import { useModel } from "./models/useModel";
 
 function App() {
+  const { modelService } = useModel();
+  const rootData = modelService.getRootData();
   // Get current page from URL query parameter
   const getCurrentPage = () => {
+    if(! rootData.gCredentialResponse) return 'login';
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('page') || 'home';
   };

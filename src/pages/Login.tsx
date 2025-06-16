@@ -7,8 +7,10 @@ import { useMsal } from '@azure/msal-react';
 import { GOOGLE_CLIENT_ID } from '../config/auth';
 import './Login.css';
 import "bootstrap/dist/css/bootstrap.min.css"; // 引入 Bootstrap 樣式
+import { useModel } from '../models/useModel';
 
 const Login: React.FC = () => {
+   const { modelService } = useModel();
   const { t } = useTranslation();
   const { instance } = useMsal();
 
@@ -16,8 +18,10 @@ const Login: React.FC = () => {
     console.log('Google Login Success:', credentialResponse);
     alert(credentialResponse.credential);
     console.log(credentialResponse.credential);
-    // Here you would typically send the credential to your backend
-    // and handle the authentication flow
+    modelService.getRootData().gCredentialResponse = credentialResponse;
+    window.history.pushState({}, '', '/?page=explore');
+    modelService.notify();
+    
   };
 
   const handleGoogleError = () => {
